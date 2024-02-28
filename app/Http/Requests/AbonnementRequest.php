@@ -24,7 +24,7 @@ class AbonnementRequest extends FormRequest
         return [
             'nom' => ['required','string','min:2'],
             'prénom' => ['required','string','min:4'],
-            'email' => ['required','email','unique','min:5'],
+            'email' => ['required','email','min:5'],
         ];
     }
 }
