@@ -1,8 +1,8 @@
 <x-mail::message>
-# Introduction
+# Contenue du message
 
-The body of your message.
-
+Titre:{{ $news->titre }}<br>
+Contenue: {{ $news->contenue }}
 <x-mail::button :url="''">
 Button Text
 </x-mail::button>

@@ -12,7 +12,17 @@ class EmailSenderController extends Controller
 {
     public function mailsend(News $news, Abonné $abonné)
     {
-        Mail::send(new NewsletterMail($news,$abonné));
+        Mail::to($abonné->email)->send(new NewsletterMail($news));
+        return back()->with('success','Le mail a bien été envoyé');
+    }
+
+    public function mailsendAll(News $news)
+    {
+        $abonnés = Abonné::all();
+        foreach ($abonnés as $abonné){
+            Mail::to($abonné->email)->send(new NewsletterMail($news));
+        }
+        return back()->with('success','Les mails ont bien été envoyés');
 
     }
 }

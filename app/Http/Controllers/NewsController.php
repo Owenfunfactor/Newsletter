@@ -6,6 +6,7 @@ use App\Http\Requests\NewsRequest;
 use App\Models\Abonné;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class NewsController extends Controller
 {
@@ -14,6 +15,7 @@ class NewsController extends Controller
      */
     public function index()
     {
+        Gate::allowIf(auth()->user()->is_Admin);
         return view('admin.news.index',[
             'news' => News::orderBy('created_at', 'desc')->paginate(25)
         ]);
@@ -35,6 +37,7 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
+
         $news = News::create($request->validated());
         return to_route('news.index')->with('success','La news a bien été créé');
     }

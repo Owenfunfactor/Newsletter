@@ -19,7 +19,7 @@ class NewsletterMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public News $news, public Abonné $abonné)
+    public function __construct(public News $news)
     {
         //
     }
@@ -27,10 +27,10 @@ class NewsletterMail extends Mailable
     /**
      * Get the message envelope.
      */
-    public function envelope(Abonné $abonné): Envelope
+    public function envelope(): Envelope
     {
         return new Envelope(
-            to: $abonné->email,
+
             subject: 'Newsletter Mail',
         );
     }

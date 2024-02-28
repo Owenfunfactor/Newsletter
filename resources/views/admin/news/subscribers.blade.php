@@ -1,12 +1,18 @@
 @extends('admin.admin')
 
-@section('title', $news->exists ? "Oui" : "Non")
+@section('title', 'Tous Les abonnés')
 
 @section('content')
 
+    <h1>@yield('title')</h1>
     <div class="d-flex justify-content-between align-items-center">
-        <h1>@yield('title')</h1>
-        <a href="#" class="btn btn-success">Envoyer à tous </a>
+        <div class="d-flex gap-2 w-100 justify-content-end">
+            <form action="{{ route('emailsenderAll',['news' => $news]) }}" method="post">
+                @csrf
+                @method('post')
+                <button class="btn btn-success">Envoyer à tous</button>
+            </form>
+        </div>
     </div>
 
     <table class="table table-striped">
